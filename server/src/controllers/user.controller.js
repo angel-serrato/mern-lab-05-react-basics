@@ -82,7 +82,7 @@ export const deactivateUserController = async (req, res, next) => {
     }
     res.status(200).json({
       success: true,
-      message: 'User deleted successfully',
+      message: 'User deactivated successfully',
       data: user,
     });
   } catch (error) {

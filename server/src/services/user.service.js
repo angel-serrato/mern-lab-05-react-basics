@@ -1,7 +1,7 @@
 import User from '../models/user.model.js';
 
 export const getAllUsers = async () => {
-  return await User.find();
+  return await User.find({ isActive: true });
 };
 
 export const createUser = async (userData) => {
@@ -9,7 +9,7 @@ export const createUser = async (userData) => {
 };
 
 export const getUserById = async (userId) => {
-  return await User.findById(userId);
+  return await User.findById({ _id: userId, isActive: true });
 };
 
 export const updateUser = async (userId, updateData) => {
@@ -17,5 +17,9 @@ export const updateUser = async (userId, updateData) => {
 };
 
 export const deactivateUser = async (userId) => {
-  return await User.findByIdAndUpdate(userId, { active: false }, { new: true });
+  return await User.findByIdAndUpdate(
+    userId,
+    { isActive: false },
+    { new: true }
+  );
 };

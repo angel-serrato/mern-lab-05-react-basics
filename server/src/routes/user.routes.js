@@ -10,13 +10,14 @@ import {
   validateUserCreate,
   validateUserUpdate,
 } from '../validators/user.validator.js';
+import { validateObjectId } from '../validators/id.validator.js';
 
 const router = express.Router();
 
 router.get('/', getAllUsersController);
 router.post('/', validateUserCreate, createUserController);
-router.get('/:id', getUserByIdController);
-router.put('/:id', validateUserUpdate, updateUserController);
-router.delete('/:id', deactivateUserController);
+router.get('/:id', validateObjectId, getUserByIdController);
+router.put('/:id', validateObjectId, validateUserUpdate, updateUserController);
+router.delete('/:id', validateObjectId, deactivateUserController);
 
 export default router;
