@@ -19,7 +19,7 @@ export const updateUser = async (userId, updateData) => {
 export const deactivateUser = async (userId) => {
   return await User.findByIdAndUpdate(
     userId,
-    { isActive: false },
+    { isActive: false, deactivatedAt: new Date() },
     { new: true }
   );
 };

@@ -73,7 +73,8 @@ export const updateUserController = async (req, res, next) => {
 
 export const deactivateUserController = async (req, res, next) => {
   try {
-    const user = await deactivateUser(req.params.id);
+    const { id } = req.params;
+    const user = await deactivateUser(id);
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -81,9 +82,11 @@ export const deactivateUserController = async (req, res, next) => {
       });
     }
     res.status(200).json({
-      success: true,
-      message: 'User deactivated successfully',
-      data: user,
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      isActive: user.isActive,
+      deactivatedAt: user.deactivatedAt,
     });
   } catch (error) {
     next(error);

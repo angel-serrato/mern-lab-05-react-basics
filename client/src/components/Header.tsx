@@ -2,25 +2,22 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-gray-900 border-b border-gray-800">
-      <div className="max-w-6xl mx-auto px-6 py-4 sm:px-8">
+    <header className="border-b border-gray-200 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex items-center justify-between">
-          <Link
-            to="/"
-            className="text-xl font-bold text-white hover:text-gray-300 transition"
-          >
-            Users App
+          <Link to="/" className="text-2xl font-semibold text-gray-900">
+            Users
           </Link>
           <nav className="flex items-center gap-6">
             <Link
               to="/users"
-              className="text-gray-300 hover:text-white font-medium transition"
+              className="text-gray-600 hover:text-gray-900 transition text-sm font-medium"
             >
-              Users
+              View All
             </Link>
             <Link
               to="/users/new"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition"
+              className="bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-800 transition"
             >
               Add User
             </Link>
