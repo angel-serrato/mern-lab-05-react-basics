@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      unique: true,
+      lowercase: true,
     },
     isActive: {
       type: Boolean,

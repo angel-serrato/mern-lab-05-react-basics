@@ -9,12 +9,7 @@ import {
 export const getAllUsersController = async (req, res, next) => {
   try {
     const users = await getAllUsers();
-    res.status(200).json({
-      success: true,
-      message: 'Users retrieved successfully',
-      data: users,
-      count: users.length,
-    });
+    res.status(200).json(users);
   } catch (error) {
     next(error);
   }
@@ -23,11 +18,7 @@ export const getAllUsersController = async (req, res, next) => {
 export const createUserController = async (req, res, next) => {
   try {
     const user = await createUser(req.body);
-    res.status(201).json({
-      success: true,
-      message: 'User created successfully',
-      data: user,
-    });
+    res.status(201).json(user);
   } catch (error) {
     next(error);
   }
@@ -37,16 +28,9 @@ export const getUserByIdController = async (req, res, next) => {
   try {
     const user = await getUserById(req.params.id);
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found',
-      });
+      return res.status(404).json({ message: 'User not found' });
     }
-    res.status(200).json({
-      success: true,
-      message: 'User retrieved successfully',
-      data: user,
-    });
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }
@@ -56,16 +40,9 @@ export const updateUserController = async (req, res, next) => {
   try {
     const user = await updateUser(req.params.id, req.body);
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found',
-      });
+      return res.status(404).json({ message: 'User not found' });
     }
-    res.status(200).json({
-      success: true,
-      message: 'User updated successfully',
-      data: user,
-    });
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }
@@ -76,10 +53,7 @@ export const deactivateUserController = async (req, res, next) => {
     const { id } = req.params;
     const user = await deactivateUser(id);
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found',
-      });
+      return res.status(404).json({ message: 'User not found' });
     }
     res.status(200).json({
       id: user._id,

@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useUsers } from "../hooks/useUser.js";
 
 function UsersList() {
-  const users: any[] = [];
+  const { users, loading, error, deactivateUser } = useUsers();
+
+  if (loading) return <p className="text-green-700">Loading...</p>;
+  if (error) return <p className="text-red-600">Error: {error}</p>;
 
   return (
     <div className="min-h-screen bg-white">
@@ -28,8 +32,8 @@ function UsersList() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {users.map((user) => (
-                  <tr key={user.id} className="hover:bg-gray-50 transition">
+                {users.map((user: any) => (
+                  <tr key={user._id} className="hover:bg-gray-50 transition">
                     <td className="px-6 py-4 text-sm font-medium text-gray-900">
                       {user.name}
                     </td>
@@ -37,10 +41,16 @@ function UsersList() {
                       {user.email}
                     </td>
                     <td className="px-6 py-4 text-right space-x-2">
-                      <button className="text-sm font-medium text-blue-600 hover:text-blue-700">
+                      <Link
+                        to={`/users/${user._id}/edit`}
+                        className="text-sm font-medium text-blue-600 hover:text-blue-700"
+                      >
                         Edit
-                      </button>
-                      <button className="text-sm font-medium text-red-600 hover:text-red-700">
+                      </Link>
+                      <button
+                        onClick={() => deactivateUser(user._id)}
+                        className="text-sm font-medium text-red-600 hover:text-red-700"
+                      >
                         Delete
                       </button>
                     </td>

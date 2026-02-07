@@ -9,11 +9,18 @@ export const createUser = async (userData) => {
 };
 
 export const getUserById = async (userId) => {
-  return await User.findById({ _id: userId, isActive: true });
+  return await User.findOne({ _id: userId, isActive: true });
 };
 
 export const updateUser = async (userId, updateData) => {
-  return await User.findByIdAndUpdate(userId, updateData, { new: true });
+  return await User.findByIdAndUpdate(
+    {
+      _id: userId,
+      isActive: true,
+    },
+    updateData,
+    { new: true }
+  );
 };
 
 export const deactivateUser = async (userId) => {

@@ -39,7 +39,6 @@ export function validateUserCreate(req, res, next) {
   if (error) {
     const errorMessages = error.details.map((detail) => detail.message);
     return res.status(400).json({
-      success: false,
       errors: errorMessages,
     });
   }
@@ -61,7 +60,6 @@ export function validateUserUpdate(req, res, next) {
     const errorMessages = error.details.map((detail) => detail.message);
     // Retorna 400 con los errores y se detiene con return
     return res.status(400).json({
-      success: false,
       errors: errorMessages,
     });
   }

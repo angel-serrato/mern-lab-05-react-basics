@@ -1,5 +1,3 @@
-// Context7 docs verified
-
 const notFound = (req, res, next) => {
   const method = req.method;
   const url = req.originalUrl;
