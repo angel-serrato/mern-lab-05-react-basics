@@ -56,6 +56,11 @@ function UsersForm() {
     }
   };
 
+  const handleClear = () => {
+    setName("");
+    setEmail("");
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -123,6 +128,7 @@ function UsersForm() {
             </button>
             <button
               type="reset"
+              onClick={handleClear}
               className="flex-1 border border-gray-300 text-gray-900 py-2 rounded font-medium hover:bg-gray-50 transition"
             >
               Clear
